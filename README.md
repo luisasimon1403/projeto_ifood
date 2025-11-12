@@ -34,6 +34,7 @@ Mercados (em construção)
 Usuário: admin
 
 Senha: 123
+
 Após o login, o administrador acessa a área do restaurante.
 
 🔹 Página do Restaurante (Chicken Friends)
