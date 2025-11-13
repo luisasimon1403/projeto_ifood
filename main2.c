@@ -9,7 +9,6 @@ void login_adm();
 void pagina_restaurante();
 void pagina_cardapio();
 void pagina_entregas();
-void pagina_horario(); // <---- nova função adicionada
 void pagina_usuario();
 void cadastro_celular();
 void codigo_whatsapp();
@@ -28,11 +27,16 @@ int total_pratos = 0;
 char celular_usuario[20];
 char email_usuario[50];
 char nome_usuario[50];
+char endereco_usuario[100];
+char numero_residencial[20];
+char complemento_usuario[50];
+char senha_usuario[20];
 int codigo_whatsapp_enviado = 1234;
 int codigo_email_enviado = 5678;
 int codigo_digitado;
+int usuario_cadastrado = 0; // 0 = não, 1 = sim
 
-// Usuário fixo (login pronto)
+// Usuário fixo (para compatibilidade)
 char usuario_fixo_nome[] = "Joao";
 char usuario_fixo_email[] = "joao@email.com";
 char usuario_fixo_senha[] = "1234";
@@ -51,11 +55,11 @@ int main() {
                 break;
             
             case 2:
-                login_adm(); // Login do administrador
+                login_adm();
                 break;
             
             case 3:
-                pagina_usuario(); // Login/Cadastro do usuário comum
+                pagina_usuario();
                 break;
             
             case 4:
@@ -156,8 +160,7 @@ void pagina_restaurante() {
         printf("=== PAGINA DO RESTAURANTE - CHICKEN FRIENDS ===\n");
         printf("1 - Ver/Alterar Cardapio\n");
         printf("2 - Ver Entregas\n");
-        printf("3 - Alterar Horario de Funcionamento\n"); // <--- NOVA OPÇÃO
-        printf("4 - Sair da conta\n");
+        printf("3 - Sair da conta\n");
         printf("\nEscolha uma opcao: ");
         scanf("%d", &opcao);
 
@@ -169,9 +172,6 @@ void pagina_restaurante() {
                 pagina_entregas();
                 break;
             case 3:
-                pagina_horario(); // <--- NOVA FUNÇÃO
-                break;
-            case 4:
                 printf("\nSaindo da conta...\n");
                 return;
             default:
@@ -179,39 +179,6 @@ void pagina_restaurante() {
                 system("pause");
         }
 
-    } while (1);
-}
-
-// ----------- NOVA FUNÇÃO: HORÁRIO DE FUNCIONAMENTO ------------
-void pagina_horario() {
-    static char horario_abertura[10] = "08:00";
-    static char horario_fechamento[10] = "22:00";
-    int opcao;
-
-    do {
-        system("cls");
-        printf("=== HORARIO DE FUNCIONAMENTO ===\n");
-        printf("Horario atual: %s - %s\n", horario_abertura, horario_fechamento);
-        printf("\n1 - Alterar horario\n");
-        printf("2 - Voltar\n");
-        printf("\nEscolha: ");
-        scanf("%d", &opcao);
-
-        if (opcao == 1) {
-            printf("\nNovo horario de abertura (ex: 09:00): ");
-            scanf("%s", horario_abertura);
-            printf("Novo horario de fechamento (ex: 21:30): ");
-            scanf("%s", horario_fechamento);
-            printf("\nHorario atualizado com sucesso!\n");
-            system("pause");
-        } 
-        else if (opcao == 2) {
-            return;
-        } 
-        else {
-            printf("Opcao invalida!\n");
-            system("pause");
-        }
     } while (1);
 }
 
@@ -276,7 +243,7 @@ void pagina_entregas() {
     system("pause");
 }
 
-// ----------- PAGINA USUARIO ------------
+// ----------- PAGINA USUARIO (ENTRAR / CADASTRAR) ------------
 void pagina_usuario() {
     int opcao;
 
@@ -313,7 +280,7 @@ void pagina_usuario() {
     } while (1);
 }
 
-// ----------- CADASTRO (CELULAR -> WHATSAPP -> EMAIL -> NOME) ------------
+// ----------- CADASTRO (CELULAR -> WHATSAPP -> EMAIL -> NOME + DADOS) ------------
 void cadastro_celular() {
     system("cls");
     printf("Digite o numero do celular: ");
@@ -375,10 +342,37 @@ void codigo_email() {
 }
 
 void cadastro_final() {
+    char confirma_senha[20];
+    int senhas_iguais;
+
     system("cls");
     printf("Digite o seu nome completo: ");
     scanf(" %[^\n]", nome_usuario);
 
+    printf("Endereco: ");
+    scanf(" %[^\n]", endereco_usuario);
+
+    printf("Numero residencial: ");
+    scanf(" %[^\n]", numero_residencial);
+
+    printf("Complemento: ");
+    scanf(" %[^\n]", complemento_usuario);
+
+    do {
+        printf("Senha: ");
+        scanf("%s", senha_usuario);
+
+        printf("Confirmar senha: ");
+        scanf("%s", confirma_senha);
+
+        senhas_iguais = strcmp(senha_usuario, confirma_senha);
+
+        if (senhas_iguais != 0)
+            printf("\nAs senhas nao conferem! Tente novamente.\n");
+
+    } while (senhas_iguais != 0);
+
+    usuario_cadastrado = 1;
     printf("\nCadastro concluido com sucesso!\n");
     printf("Nome: %s\nCelular: %s\nEmail: %s\n", nome_usuario, celular_usuario, email_usuario);
     system("pause");
@@ -395,10 +389,9 @@ void login_usuario() {
     printf("Senha: ");
     scanf("%s", senha);
 
-    email_ok = strcmp(email, usuario_fixo_email);
-    senha_ok = strcmp(senha, usuario_fixo_senha);
-
-    if (email_ok == 0 && senha_ok == 0) {
+    if (usuario_cadastrado == 1 && strcmp(email, email_usuario) == 0 && strcmp(senha, senha_usuario) == 0) {
+        printf("\nBem-vindo, %s!\n", nome_usuario);
+    } else if (strcmp(email, usuario_fixo_email) == 0 && strcmp(senha, usuario_fixo_senha) == 0) {
         printf("\nBem-vindo, %s!\n", usuario_fixo_nome);
     } else {
         printf("\nEmail ou senha incorretos!\n");
