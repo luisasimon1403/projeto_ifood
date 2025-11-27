@@ -1,102 +1,112 @@
-# projeto_ifood
-📌 Descrição
+# Sistema de Delivery em Linguagem C --- IFood
 
-Este projeto é uma simulação simplificada do sistema do iFood, desenvolvida em linguagem C.
-O objetivo é representar, de forma didática, o funcionamento básico de um aplicativo de delivery, com menus, login de administrador e gerenciamento de cardápio.
+Este projeto simula um sistema de delivery inspirado no iFood,
+desenvolvido em linguagem C.\
+Ele oferece funcionalidades completas para usuário, administrador,
+carrinho de compras, pagamentos, gestão de estoque e um QR Code para pagamento via Pix.
 
-O sistema foi criado para fins acadêmicos, com o intuito de praticar:
+## 👥 Integrantes do Grupo
 
-Estruturação de funções em C
+-   Lorena Dalmagro
+-   Luana Almeida
+-   Luísa Diniz Simon
+-   Maria Heloísa Nunes
+-   Maria Rosa Brasileiro
 
-Manipulação de strings e vetores
 
-Uso de condicionais, laços e menus
+## 📚 Bibliotecas Utilizadas
 
-Organização modular do código
+#include \<stdio.h\>\
+#include \<stdlib.h\>\
+#include \<string.h\>\
+#include \<locale.h\>
 
-🧩 Funcionalidades
+## 🧩 Principais Funcionalidades e Como Acessá-las
 
-🔹 Página Inicial
-Exibe o menu principal com as opções:
+### 1) Tela Inicial
 
-Entregador (em construção)
+Opções principais: - Entrar/Cadastrar - Restaurantes - Mercados (não
+implementado) - Admin - Entregador (não implementado)
 
-Para empresas (login de administrador)
+### 2) Módulo do Usuário
 
-Entrar/Cadastrar (em construção)
+#### ✔ Cadastro
 
-Restaurantes (em construção)
+1.  Cadastro via número de celular\
+2.  Código WhatsApp (simulado)\
+3.  Cadastro de e-mail\
+4.  Código por e-mail (simulado)\
+5.  Nome, endereço, telefone e senha
 
-Mercados (em construção)
+#### ✔ Login
 
-🔹 Login do Administrador
+-   Usuário cadastrado\
+-   Usuário pré-definido ("João")
 
-Usuário: admin
+#### ✔ Minha Conta
 
+-   Ver informações\
+-   Editar dados pessoais\
+-   Editar endereço\
+-   Editar contato\
+-   Alterar senha\
+-   Publicidade
+
+### 3) Restaurantes
+
+Restaurante padrão: **Chicken Friends**
+
+### 4) Cardápio e Detalhes dos Produtos
+
+-   Nome, descrição, preço e estoque\
+-   Adicionar ao carrinho\
+-   Ir ao carrinho
+
+### 5) Carrinho de Compras
+
+-   Listar itens\
+-   Remover item\
+-   Total automático\
+-   Finalizar compra
+
+### 6) Endereço de Entrega
+
+-   Confirmar ou alterar antes do pagamento
+
+### 7) Pagamentos
+
+#### ✔ Cartão
+
+#### ✔ Dinheiro
+
+#### ✔ Pix com QR Code:
+
+@@@@@@@:..*=*@#:-@:@@@@@@@ @=**+-@: :=:= ++@:@-+**=@ @*@@#-@: @#
+-*:=:@-*@@+@ @@@@@@@: *-*@@* *@:@@@@@@@ :: : @@+..:-@:: : +---=# \# +#+
+-:#--\
+@# :+*+@-+-- \# + @# \# + :+@@@* -- ++ \#* = *@\* *@#: =* =*@* :@ *@+.::
+@ @ : @@@@@@@ @--::*@*= @@@@@@@ @=##+-@:* +#@@ @=#+#-@ @*@@#-@:
+*:=+-:++* @*@#@-@ @@@@@@@: @+:=@ @@@@@@@
+
+### 8) Status da Entrega
+
+1.  Pedido recebido\
+2.  Em preparação\
+3.  Saiu para entrega\
+4.  Entregue
+
+### 9) Módulo Administrativo (ADM)
+
+Usuário: admin\
 Senha: 123
 
-Após o login, o administrador acessa a área do restaurante.
+-   Ver cardápio\
+-   Adicionar prato\
+-   Editar prato\
+-   Excluir prato\
+-   Ajustar estoque
 
-🔹 Página do Restaurante (Chicken Friends)
+## 📦 Considerações Finais
 
-Ver/Alterar Cardápio
-
-Cadastrar novos pratos (máximo de 10)
-
-Listar todos os pratos cadastrados
-
-Ver Entregas
-
-Exibe uma simulação de entregas (sem dados reais)
-
-Sair da Conta
-
-Retorna para a tela inicial
-
-⚙️ Como Executar o Projeto
-
-Abra o código em um compilador C (por exemplo, Code::Blocks, Dev-C++ ou VS Code).
-
-Compile e execute o programa (main.c).
-
-Navegue pelas opções do menu digitando os números correspondentes.
-
-Para acessar o modo administrador:
-
-Usuário: admin
-Senha: 123
-
-💡 Estrutura do Código
-
-O programa é dividido em funções principais:
-
-pagina_inicial() → Exibe o menu principal
-
-le_valida_opcao_pagina_inicial() → Lê e valida a opção digitada
-
-login_adm() → Faz o login do administrador
-
-pagina_restaurante() → Mostra o painel do restaurante
-
-pagina_cardapio() → Permite cadastrar e listar pratos
-
-pagina_entregas() → Exibe as entregas simuladas
-
-Além disso, há vetores globais para armazenar os pratos e suas quantidades.
-
-🧠 Aprendizados Envolvidos
-
-Modularização do código em funções
-
-Manipulação de strings com strcpy() e strcmp()
-
-Estruturas de repetição (do...while)
-
-Estruturas condicionais (if, switch)
-
-Entrada e saída de dados no console
-
-👩‍💻 Autora
-
-Luísa Diniz Simon
-Projeto desenvolvido como prática acadêmica para aprimorar a lógica de programação e o uso de funções em C.
+Sistema completo utilizando funções, structs, vetores e menus
+interativos.
